@@ -6,7 +6,7 @@ from .core import StringField, BooleanField
 
 __all__ = (
     'BooleanField', 'TextAreaField', 'PasswordField', 'FileField',
-    'HiddenField', 'SubmitField', 'TextField'
+    'HiddenField', 'SubmitField', 'TextField', 'CameraField'
 )
 
 
@@ -50,6 +50,9 @@ class FileField(StringField):
     individual frameworks' file handling capabilities.
     """
     widget = widgets.FileInput()
+
+class CameraField(StringField):
+    widget = widgets.CameraInput()
 
 
 class HiddenField(StringField):

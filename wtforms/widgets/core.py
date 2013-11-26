@@ -7,7 +7,7 @@ from wtforms.compat import text_type, iteritems
 __all__ = (
     'CheckboxInput', 'FileInput', 'HiddenInput', 'ListWidget', 'PasswordInput',
     'RadioInput', 'Select', 'SubmitInput', 'TableWidget', 'TextArea',
-    'TextInput', 'Option'
+    'TextInput', 'Option', 'CameraInput'
 )
 
 
@@ -222,6 +222,13 @@ class FileInput(object):
 
     def __call__(self, field, **kwargs):
         kwargs.setdefault('id', field.id)
+        return HTMLString('<input %s>' % html_params(name=field.name, type='file', **kwargs))
+
+class CameraInput(object):
+    def __call__(self, field, **kwargs):
+        kwargs.setdefault('id', field.id)
+        kwargs['capture'] = 'camera'
+        kwargs['accept'] = 'image/*'
         return HTMLString('<input %s>' % html_params(name=field.name, type='file', **kwargs))
 
 
